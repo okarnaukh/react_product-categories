@@ -43,6 +43,11 @@ export const App = () => {
     query,
   });
 
+  const resetAllFilters = () => {
+    setSelectedUser('All');
+    setQuery('');
+  };
+
   return (
     <div className="section">
       <div className="container">
@@ -59,6 +64,7 @@ export const App = () => {
                 onClick={() => {
                   setSelectedUser('All');
                 }}
+                className={selectedUser === 'All' ? 'is-active' : ''}
               >
                 All
               </a>
@@ -148,6 +154,7 @@ export const App = () => {
                 data-cy="ResetAllButton"
                 href="#/"
                 className="button is-link is-outlined is-fullwidth"
+                onClick={resetAllFilters}
               >
                 Reset all filters
               </a>
@@ -221,7 +228,7 @@ export const App = () => {
                     </td>
 
                     <td data-cy="ProductName">{product.name}</td>
-                    <td data-cy="ProductCategory">{`🍺 - ${product.category.title}`}</td>
+                    <td data-cy="ProductCategory">{`${product.category.icon} - ${product.category.title}`}</td>
 
                     <td
                       data-cy="ProductUser"
